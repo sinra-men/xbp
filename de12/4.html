@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <!-- ⑥↓タイトルを変えてみよう -->
+    <header class="header-de12">
+        <div class="header-text">
+    <title>xbp第４回 Pythonでゲームを作ろう！</title></div>
+    <header class="header-de12">
+        <div class="header-text">
+            <h1>第４回　Pythonでゲームを作ろう！</h1>
+</header>
+    <!-- ⑤スタイルシートの設定をしよう -->
+    <!-- h1.htmlからある行をコピペしてくればOK -->
+</head>
+<body>
+    
+<h2>Pythonを使って神様になるための人生ゲームを作ってみました。</h2><br>
+<h3>ストーリー下書き</h3><br>
+<img src="./images/dezainn.jpg" width="55%">
+    
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pythonコードの表示</title>
+</head>
+<body>
+    <pre>
+        <code>
+            # ゲームのメイン関数
+def ant_game():
+    print("アリをつぶす？ つぶさない？")
+    user_choice = input("「つぶす」または「つぶさない」を入力してください： ").strip().lower()
+
+    if user_choice == "つぶす":
+        print("小学校入学です！")
+    elif user_choice == "つぶさない":
+        print("ミジンコです！")
+        print("ゲームオーバー！ミジンコになりました。")
+        return  # ゲーム終了
+    else:
+        print("無効な選択です。正しい選択を入力してください。")
+        return  # ゲーム終了
+
+    # 新しい質問
+    print("次の質問:")
+    print("無事に小学校に入学したあなた。今日はクラスで休みが出たよ。さて始まるのは牛乳じゃんけん。参加する？しない？")
+    user_choice = input("「参加する」または「参加しない」を入力してください： ").strip().lower()
+
+    if user_choice == "参加する":
+        print("中学校入学！")
+    elif user_choice == "参加しない":
+        print("学校になじめず引きこもりからのニート！")
+        print("ゲームオーバー！ニートになりました。")
+        return  # ゲーム終了
+    else:
+        print("無効な選択です。正しい選択を入力してください。")
+        return  # ゲーム終了
+    # 新しい質問
+    print("次の質問:")
+    print("健全な証拠！スカートめくりあなたはする？しない？")
+    user_choice = input("「する」または「しない」を入力してください： ").strip().lower()
+
+    if user_choice == "する":
+        print("高校入学！")
+    elif user_choice == "しない":
+        print("ニートです！")
+        print("ゲームオーバー！ニートになりました。")
+        return  # ゲーム終了
+    else:
+        print("無効な選択です。正しい選択を入力してください。")
+        return  # ゲーム終了
+    
+     # 新しい質問
+    print("次の質問:")
+    print("晴れて高校となったあなた。制服をしっかり着る？着崩す？")
+    user_choice = input("「しっかり着る」または「着崩す」を入力してください： ").strip().lower()
+
+    if user_choice == "しっかり着る":
+        print("大学入学！")
+    elif user_choice == "着崩す":
+        print("すこし制服を着崩すはずが次々と校則を破り悪い仲間とつるむように、、、エスカレートし逮捕")
+        print("ゲームオーバー！更生頑張りましょう。")
+        return  # ゲーム終了
+    else:
+        print("無効な選択です。正しい選択を入力してください。")
+        return  # ゲーム終了
+    
+    # 新しい質問
+    print("次の質問:")
+    print("友達から誘われたサークルが飲みサーだった！入る？入らない？")
+    user_choice = input("「入る」または「入らない」を入力してください： ").strip().lower()
+
+    if user_choice == "入る":
+        print("進級おめでとうございます！大学４年生になりました。")
+    elif user_choice == "入らない":
+        print("人脈を広げられなかったあなた。学校に馴染めず退学。")
+        print("ゲームオーバー！大学が全てじゃないよ！＾＾")
+        return  # ゲーム終了
+    else:
+        print("無効な選択です。正しい選択を入力してください。")
+        return  # ゲーム終了
+    
+     # 新しい質問
+    print("次の質問:")
+    print("卒業後の進路どうする？")
+    user_choice = input("「旅に出る」または「実家の旅館を継ぐ」を入力してください： ").strip().lower()
+
+    if user_choice == "旅に出る":
+        print("おめでとうございます。あなたは旅先で行ったインドで悟りを開き神になりました。")
+    elif user_choice == "実家の旅館を継ぐ":
+        print("皆を癒す愛される旅館をつくってね。")
+        print("ゲームオーバー！神になれませんでした。")
+        return  # ゲーム終了
+    else:
+        print("無効な選択です。正しい選択を入力してください。")
+        return  # ゲーム終了
+    
+
+if __name__ == "__main__":
+    ant_game()
+        </code>
+    </pre>
+</body>
+</html>
+
+<h3>感想</h3>
+<div>今発売されている既存のゲームのレベルの高さに驚きました。<br>
+    当初は色を付けたりキャラクターを動かしたりするようなゲームを作ろうと思っていたけど、それがどれだけ難しいのか身に染みて分かりました。<br>
+今の自分のレベルでは100％満足いくものを作れなかったけど自分でひとつゲームを作ったということが嬉しかったです。</div>
+
+
+
+
+<div></div>
+<img src="" width="60%"><br>
+         <!-- ②↓に画像（imagesフォルダにあるtest.png）を挿入してみよう -->
+
+         <!-- ③↓に箇条書きをしてみよう -->
+
+         <!-- ④↓に外部リンクを作ってみよう -->
+
+    </div>
+
+<div><ol>
+   
+
+<div>
+   
+<br>
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div></div>
+
+<div><br>
+    </div>
+<br>
+<br>
+<br>
+
+
+<a href="https://www.sejuku.net/blog/5756"></a><br>
+<a href="https://blog.codecamp.jp/html-beginner-elementary#:~:text=HTML%EF%BC%88Hyper%20Text,Markup%20Language%EF%BC%89%E3%81%AF%E3%80%81Web%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AE%E6%96%87%E6%9B%B8%E6%A7%8B%E9%80%A0%E3%82%92%E6%9B%B8%E3%81%8F%E3%81%9F%E3%82%81%E3%81%AE%E8%A8%80%E8%AA%9E%E3%81%A7%E3%81%99%E3%80%82%20%E6%96%87%E6%9B%B8%E3%81%AE%22%E9%AA%A8%E6%A0%BC%22%E3%81%A8%E8%80%83%E3%81%88%E3%82%8C%E3%81%B0%E3%82%8F%E3%81%8B%E3%82%8A%E3%82%84%E3%81%99%E3%81%84%E3%81%A7%E3%81%97%E3%82%87%E3%81%86%E3%80%82"></a>
+</div>
+</body>
+</html>
