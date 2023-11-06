@@ -72,3 +72,53 @@ gitを使えば、「◯月◯日に、◯◯さんが◯◯を変更した」�
 </div>
 </body>
 </html>
+
+
+
+
+
+import wikipedia
+
+# キーワードを設定
+keyword = "麻雀"
+# キーワードで検索
+wikipedia.set_lang("ja")
+result = wikipedia.search(keyword)
+print("検索結果",result)
+
+print("最初の検索結果を表示")
+page_data = wikipedia.page(result[0])
+print(page_data.content)
+
+import requests
+
+# ユーザーからの場所情報を入力
+location = input("江ノ島: ")
+
+# 地理情報を取得するためのAPIキー（OpenCage Geocoding APIを使用）
+api_key = "YOUR_OPEN_CAGE_API_KEY"
+geocoding_url = f"https://api.opencagedata.com/geocode/v1/json?q={location}&key={api_key}"
+response = requests.get(geocoding_url)
+location_data = response.json()
+
+# 地理情報から緯度と経度を取得
+if location_data.get("results"):
+    lat = location_data["results"][0]["geometry"]["lat"]
+    lon = location_data["results"][0]["geometry"]["lng"]
+
+    # おすすめスポットを検索するためのAPIキー（Foursquare APIを使用）
+    fsq_api_key = "YOUR_FOURSQUARE_API_KEY"
+    fsq_url = f"https://api.foursquare.com/v2/venues/explore?ll={lat},{lon}&client_id={fsq_api_key}&v=20220101"
+    fsq_response = requests.get(fsq_url)
+    fsq_data = fsq_response.json()
+
+    # おすすめスポットを表示
+    if fsq_data.get("response") and fsq_data["response"].get("groups"):
+        items = fsq_data["response"]["groups"][0]["items"]
+        print("おすすめスポット:")
+        for item in items:
+            print(item["venue"]["name"])
+    else:
+        print("おすすめスポットが見つかりませんでした。")
+else:
+    print("場所が見つかりませんでした。")

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <!-- ⑥↓タイトルを変えてみよう -->
+    <header class="header-de12">
+        <div class="header-text">
+    <title>xbp第5回 プログラミング</title></div>
+    <header class="header-de12">
+        <div class="header-text">
+            <h1>第５回　プログラミング</h1>
+</header>
+    <!-- ⑤スタイルシートの設定をしよう -->
+    <!-- h1.htmlからある行をコピペしてくればOK -->
+</head>
+<body>
+    
+<h2>Pythonを使って旅行プラン立てを手伝ってくれるプログラムを作ってみました。</h2><br>
+<div>Pinterestなどの画像検索サイトで行きたいと思う場所の画像をみつけて保存することがあると思います。<br>
+    しかし詳しい場所の掲載がされていないことがしばしばあります。<br>
+    そこで私たちの班は行きたい場所の画像さえあれば画像の場所を教えてくれて周辺のおすすめスポット、周辺の宿泊施設、最善の交通機関を提案してくれるプログラムを作ろうと思いました。<br>
+</div>
+<h3>★下書き★</h3><br>
+<img src="./images/デザイン経営論　プログラミング.jpg" width="45%"><br>
+<div>班のメンバーで写真検索のコードを作る人、周辺のおすすめスポットを提案してくれるコードを作る人、周辺の宿泊施設を提案してくれるコードを作る人、<br>
+    最善の交通機関を提案してくれるコードを作る人の４つに分かれて製作しました。<br>
+    私は周辺のおすすめスポットを提案してくれるコードを担当しました。</div>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pythonコードの表示（周辺のおすすめスポットを提案してくれるコード）</title>
+</head>
+<body>
+    <pre>
+        <code>
+            import japanize_kivy
+            import urllib.parse
+            import kivy
+            from kivy.app import App
+            from kivy.uix.boxlayout import BoxLayout
+            from kivy.uix.textinput import TextInput
+            from kivy.uix.button import Button
+            import webbrowser
+            kivy.require('1.11.1')
+            
+            class HashTagSearchApp(App):
+                def __init__(self, **kwargs):
+                    super().__init__(**kwargs)
+                    self.hashtags = []
+            
+                def build(self):
+                    self.layout = BoxLayout(orientation='vertical')
+                    self.input_text = TextInput(hint_text='enter a hashtag without "#"')
+                    self.add_button = Button(text='search')
+                    self.add_button.bind(on_press=self.search_hashtag)
+                    self.layout.add_widget(self.input_text)
+                    self.layout.add_widget(self.add_button)
+                    return self.layout
+            
+               
+            
+                def search_hashtag(self, instance):
+                    hashtag = self.input_text.text.strip()
+                    if hashtag:
+                        self.hashtags.append(hashtag)
+                        hashtag = urllib.parse.quote(hashtag)  # キーワードをエンコード
+                        search_url = f'https://www.instagram.com/explore/tags/{hashtag}/'
+                        webbrowser.open(search_url)
+            
+                        # ウィンドウを閉じないようにするためのカスタムロジックを追加
+                        pass
+            
+            
+            if __name__ == '__main__':
+                app = HashTagSearchApp()
+                app.run()
+            
+        </code>
+    </pre>
+</body>
+</html>
+
+<div>～特定の場所のおすすめスポットを推奨するにはインスタグラムの＃機能が最適だと思ったので行きたい場所を入力したらインスタグラムのページに飛ぶように作りました～</div><br>
+<br>
+<h3>実際の手順</h3>
+<div class="video"><iframe width="560" height="315" src="https://www.youtube.com/embed/t0ihnRrzyD4?si=kYEy9co9bw2nejAj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><br>
+<br>
+<br>
+<h3>4人各々で作ったコードを一つに合体！</h3>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>4人各々で作ったコードを一つに合体！</title>
+</head>
+<body>
+    <pre>
+        <code>
+            📍Instagram
+import japanize_kivy
+import urllib.parse
+import kivy
+from kivy.app import App
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.textinput import TextInput
+from kivy.uix.button import Button
+import webbrowser
+kivy.require('1.11.1')
+
+class HashTagSearchApp(App):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.hashtags = []
+
+    def build(self):
+        self.layout = BoxLayout(orientation='vertical')
+        self.input_text = TextInput(hint_text='enter a hashtag without "#"')
+        self.add_button = Button(text='search')
+        self.add_button.bind(on_press=self.search_hashtag)
+        self.layout.add_widget(self.input_text)
+        self.layout.add_widget(self.add_button)
+        return self.layout
+
+   
+
+    def search_hashtag(self, instance):
+        hashtag = self.input_text.text.strip()
+        if hashtag:
+            self.hashtags.append(hashtag)
+            hashtag = urllib.parse.quote(hashtag)  # キーワードをエンコード
+            search_url = f'https://www.instagram.com/explore/tags/{hashtag}/'
+            webbrowser.open(search_url)
+
+            # ウィンドウを閉じないようにするためのカスタムロジックを追加
+            pass
+
+
+if __name__ == '__main__':
+    app = HashTagSearchApp()
+    app.run()
+
+📍交通検索
+import japanize_kivy
+import kivy
+from kivy.app import App
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.textinput import TextInput
+from kivy.uix.button import Button
+import requests
+# 既存のコードの上部に以下のインポート文を追加します
+from kivy.uix.label import Label
+
+class TransportationApp(App):
+    def build(self):
+        layout = BoxLayout(orientation='vertical')
+        self.result_label = Label(text='', size_hint_y=None, height=44)
+        layout.add_widget(self.result_label)
+        return layout
+
+
+kivy.require('1.11.1')
+
+class TransportationApp(App):
+    def build(self):
+        layout = BoxLayout(orientation='vertical')
+        self.destination_input = TextInput(hint_text='目的地を入力')
+        search_button = Button(text='交通情報を検索', on_press=self.search_transportation)
+        self.result_label = Label(text='', size_hint_y=None, height=44)
+
+        layout.add_widget(self.destination_input)
+        layout.add_widget(search_button)
+        layout.add_widget(self.result_label)
+        return layout
+
+    def search_transportation(self, instance):
+        destination = self.destination_input.text.strip()
+        if destination:
+            # ヤフージャパンのAPIキーを設定
+            api_key = 'YOUR_YAHOO_JAPAN_API_KEY'
+
+            # APIエンドポイント
+            api_url = f'https://map.yahooapis.jp/direction/v1/transit?appid={api_key}&from=&to={destination}&format=json'
+
+            # APIリクエストを送信
+            response = requests.get(api_url)
+
+            if response.status_code == 200:
+                # レスポンスを処理し、結果を取得
+                transportation_info = response.json()
+
+📍宿検索
+import japanize_kivy
+import urllib.parse
+import kivy
+from kivy.app import App
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.textinput import TextInput
+from kivy.uix.button import Button
+import webbrowser
+
+kivy.require('1.11.1')
+
+class HotelSearchApp(App):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    def build(self):
+        self.layout = BoxLayout(orientation='vertical')
+        self.location_input = TextInput(hint_text='目的地を入力してください')
+        self.check_in_input = TextInput(hint_text='チェックイン日（例: 2023-11-04）')
+        self.check_out_input = TextInput(hint_text='チェックアウト日（例: 2023-11-07）')
+        self.guests_input = TextInput(hint_text='宿泊人数')
+        self.rooms_input = TextInput(hint_text='部屋数')
+        self.search_button = Button(text='検索')
+        self.search_button.bind(on_press=self.search_hotels)
+
+        self.layout.add_widget(self.location_input)
+        self.layout.add_widget(self.check_in_input)
+        self.layout.add_widget(self.check_out_input)
+        self.layout.add_widget(self.guests_input)
+        self.layout.add_widget(self.rooms_input)
+        self.layout.add_widget(self.search_button)
+
+        return self.layout
+
+    def search_hotels(self, instance):
+        location = self.location_input.text.strip()
+        check_in_date = self.check_in_input.text.strip()
+        check_out_date = self.check_out_input.text.strip()
+        guests = self.guests_input.text.strip()
+        rooms = self.rooms_input.text.strip()
+
+        if location and check_in_date and check_out_date:
+            # 実際の宿泊サイトのURLに合わせて調整
+            # 以下はBooking.comの例
+            base_url = 'https://www.booking.com/search.html'
+            query_parameters = {
+                'ss': location,
+                'checkin_monthday': check_in_date.split('-')[2],
+                'checkin_year_month': f'{check_in_date.split("-")[0]}-{check_in_date.split("-")[1]}',
+                'checkout_monthday': check_out_date.split('-')[2],
+                'checkout_year_month': f'{check_out_date.split("-")[0]}-{check_out_date.split("-")[1]}',
+                'group_adults': guests,
+                'no_rooms': rooms,
+            }
+            query_string = urllib.parse.urlencode(query_parameters)
+            search_url = f'{base_url}?{query_string}'
+            webbrowser.open(search_url)
+
+if __name__ == '__main__':
+    app = HotelSearchApp()
+    app.run()
+        </code>
+    </pre>
+</body>
+</html>
+
+<h3>感想</h3>
+<div>杉野先輩の過去のPythonコードを参考にしてインスタグラムのサイトに飛べるように改良させていただきました。<br>
+    先輩のコードがどこに載っているか分からなかったので後日貼り付けします。最初は実行した後毎回実行の記録を削除しなければ連続でインスタグラムのサイトに飛べなかったので実行の記録を削除せずとも繰り返し検索してサイトに飛べるようにしました。<br>
+途中完成させるのは難しいと思ったが班のメンバーが頑張ってくれてここまで形にできたことがとても嬉しいです。自分が日常で使っている様々なツールはどんなコードになっているのかみたいですｓｓ。
+    </div>
+
+
+
+
+<div></div>
+<img src="" width="60%"><br>
+         <!-- ②↓に画像（imagesフォルダにあるtest.png）を挿入してみよう -->
+
+         <!-- ③↓に箇条書きをしてみよう -->
+
+         <!-- ④↓に外部リンクを作ってみよう -->
+
+    </div>
+
+<div><ol>
+   
+
+<div>
+   
+<br>
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div></div>
+
+<div><br>
+    </div>
+<br>
+<br>
+<br>
+
+
+<a href="https://www.sejuku.net/blog/5756"></a><br>
+<a href="https://blog.codecamp.jp/html-beginner-elementary#:~:text=HTML%EF%BC%88Hyper%20Text,Markup%20Language%EF%BC%89%E3%81%AF%E3%80%81Web%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AE%E6%96%87%E6%9B%B8%E6%A7%8B%E9%80%A0%E3%82%92%E6%9B%B8%E3%81%8F%E3%81%9F%E3%82%81%E3%81%AE%E8%A8%80%E8%AA%9E%E3%81%A7%E3%81%99%E3%80%82%20%E6%96%87%E6%9B%B8%E3%81%AE%22%E9%AA%A8%E6%A0%BC%22%E3%81%A8%E8%80%83%E3%81%88%E3%82%8C%E3%81%B0%E3%82%8F%E3%81%8B%E3%82%8A%E3%82%84%E3%81%99%E3%81%84%E3%81%A7%E3%81%97%E3%82%87%E3%81%86%E3%80%82"></a>
+</div>
+</body>
+</html>
